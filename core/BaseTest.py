@@ -14,3 +14,10 @@ def mail_login():
     faker = Faker()
     login = faker.email()
     return login
+
+@pytest.fixture
+def password():
+    faker = Faker()
+    password = faker.password()
+    return password
+
