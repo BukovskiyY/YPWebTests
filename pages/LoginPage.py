@@ -56,7 +56,12 @@ class LoginPageHelper(BasePage):
         self.find_element(LoginPageLocators.LOGIN_PASSWORD).send_keys(password)
         self.attach_screenshot()
 
-    @allure.step('Нажимаем на кнопку "Войти"')
+    @allure.step('Переходим к восстановлению')
     def click_recovery(self):
         self.attach_screenshot()
         self.find_element(LoginPageLocators.RESTORE_LINK).click()
+
+    @allure.step('Переходим к регистрации')
+    def click_registration(self):
+        self.attach_screenshot()
+        self.find_element(LoginPageLocators.REGISTRATION_BUTTON).click()
