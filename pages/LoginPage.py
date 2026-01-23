@@ -1,13 +1,14 @@
 import allure
-from pages.BasePage import BasePage
+from pages.BasePage import BasePageHelper
 from selenium.webdriver.common.by import By
+
 
 class LoginPageLocators:
     LOGIN_TAB = (By.XPATH, '//*[@data-l="t,login_tab"]')
     LOGIN_QR_TAB = (By.XPATH, '//*[@data-l="t,qr_tab"]')
     LOGIN_EMAIL = (By.ID, 'field_email')
     LOGIN_PASSWORD = (By.ID, 'field_password')
-    LOGIN_BUTTON =  (By.XPATH, '//button[.//span[text()="Войти"]]')
+    LOGIN_BUTTON = (By.XPATH, '//button[.//span[text()="Войти"]]')
     LOGIN_BY_QR_CODE = (By.XPATH, '//*[@label="Войти по QR-коду"]')
     RESTORE_LINK = (By.XPATH, '//*[contains(@href, "anonymRecoveryStart")]')
     REGISTRATION_BUTTON = (By.XPATH, '//button[.//span[text()="Зарегистрироваться"]]')
@@ -17,7 +18,8 @@ class LoginPageLocators:
     ERROR_TEXT = (By.CSS_SELECTOR, "span[class*='LoginForm-module__error']")
     GO_BACK_BUTTON = (By.XPATH, '//button[.//span[text()="Отмена"]]')
 
-class LoginPageHelper(BasePage):
+
+class LoginPageHelper(BasePageHelper):
     def __init__(self, driver):
         self.driver = driver
         self.check_page()
@@ -44,7 +46,7 @@ class LoginPageHelper(BasePage):
     @allure.step('Получаем текст ошибки')
     def get_error_text(self):
         self.attach_screenshot()
-        return  self.find_element(LoginPageLocators.ERROR_TEXT).text
+        return self.find_element(LoginPageLocators.ERROR_TEXT).text
 
     @allure.step('Заполняем поле логин')
     def type_login(self, mail_login):

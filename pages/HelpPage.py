@@ -1,7 +1,8 @@
 import allure
 from selenium.webdriver import ActionChains
-from pages.BasePage import BasePage
 from selenium.webdriver.common.by import By
+
+from pages.BasePage import BasePageHelper
 
 
 class HelpPageLocators:
@@ -11,16 +12,17 @@ class HelpPageLocators:
     MY_PROFILE = (By.XPATH, '//a[contains(@href,"moi-profil")]')
     COMMUNICATION = (By.XPATH, '//a[contains(@href,"obshchenie")]')
     PROFILE_ACCESS = (By.XPATH, '//a[contains(@href,"dostup-k-profilu")]')
-    SECURITY = (By.XPATH,'//a[contains(@href,"bezopasnost")]')
-    GROUPS = (By.XPATH,'//a[contains(@href,"gruppy")]')
-    PAYED_FUNCTIONS = (By.XPATH,'//a[contains(@href,"platnye-funkcii")]')
+    SECURITY = (By.XPATH, '//a[contains(@href,"bezopasnost")]')
+    GROUPS = (By.XPATH, '//a[contains(@href,"gruppy")]')
+    PAYED_FUNCTIONS = (By.XPATH, '//a[contains(@href,"platnye-funkcii")]')
     SPAM = (By.XPATH, '//a[contains(@href,"narusheniya-i-spam")]')
     GAMES_AND_APPS = (By.XPATH, '//a[contains(@href,"igry-i-prilojeniya")]')
     OTHER_SERVICES = (By.XPATH, '//a[contains(@href,"drugie-servisy")]')
     IMPORTANT_INFORMATION = (By.XPATH, '//a[contains(@href,"poleznaya-informaciya")]')
     ADVERTISEMENT_CABINET = (By.XPATH, '//a[contains(@href,"reklamnyi-kabinet")]')
 
-class HelpPageHelper(BasePage):
+
+class HelpPageHelper(BasePageHelper):
     def __init__(self, driver):
         self.driver = driver
         self.check_page()
@@ -43,7 +45,7 @@ class HelpPageHelper(BasePage):
         self.find_element(HelpPageLocators.IMPORTANT_INFORMATION)
         self.find_element(HelpPageLocators.ADVERTISEMENT_CABINET)
 
-    def scrollToitem(self, locator):
+    def scroll_to_item(self, locator):
         with allure.step('Скроллим до элемента'):
             scroll_item = self.find_element(locator)
             ActionChains(self.driver).scroll_to_element(scroll_item).click(scroll_item).perform()
